@@ -30,6 +30,13 @@ The receiver circuit uses the DHT22 sensor to measure the temperature and humidi
 It also uses the NRF24L01 module to receive the data from the transmitter circuit. 3rd pin to Arduino's digital pin 6. 4th pin to Arduino's digital pin 7. The 5th, 6th and 7th pins to the Arduino's SCK, MOSI, and MISO pins respectively.
 ## Code
 The transmitter code and the receiver code are attached. Before uploading them, we need to install the DHT library, the NRF24L01 library and the display library.
+## Personal Notes
+* This project gave me an understanding of how wireless networks work.
+* I understood briefly two different Serial Communication Protocols and their differences. They are the SPI and the I2C.
+* I learnt how to connect the transciever module to the right pins and also understood how to use them to establish communication between two boards.
+* I understood how to display text on the TFT display.
+* Understood how to work with the DHT sensor module.
+
 
 
 
