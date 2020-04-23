@@ -15,8 +15,9 @@ We use this to create arrays of temeprature values corresponding to a particular
 This project uses an algorithm to detect a simple gesture like increasing or decreasing the volume of a sound player.
 
 Here's how it works:
-```
+
 This is a small segment of the code:
+```
 void loop() {
  // Print temperature light
  Serial.print(tpa.getAmbient());
@@ -31,5 +32,12 @@ Serial.println(" ");
  delay(100);
 }
 ```
-![tpa](vid11_Rn2qAJVlJG.gif)
+
 After running this code, Open the Serial Terminal in Arduino IDE and look at the 8 array temperature sensed by TPA81. the first number in each line belongs to the total temperature. Now put your hand in front of the sensor and see the temperature of your body. To define a gesture by hand, you should know your hand temperature and set it as an offset. We set it to 29 degrees. Upload the next code to see your hand movement in front of TPA81.
+
+The required info is displayed on the OLED Display by converting an image into hexadecimal values using a software.
+
+## Personal Comments
+* For the code to run, the TPA and SSD1306 libraries need to be installed.
+* Learnt how to use and run an 8-pixel PIR sensor named TPA81.
+* Learnt how to display images on the OLED Display.
