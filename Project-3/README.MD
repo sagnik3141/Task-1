@@ -16,3 +16,5 @@ When the left-eye winks the AD8232 output wave form rises towards 3.3 volts. Whe
 When the right-eye winks the AD8232 output wave form falls towards zero volts. When the waveform falls below 0.2 volts the right-wink comparator output changes from zero to 5 volts.
 
 Normal blinks have no effect on the output as they are the equivalent of two simulataneous winks and it’s not possible for the AD8232 output to go in two opposite directions at the same time.
+## Circuit
+![wink_detector](wink_detector.jpg)
