@@ -20,3 +20,6 @@ Normal blinks have no effect on the output as they are the equivalent of two sim
 ![wink_detector](wink_detector.jpg)
 
 ![modifications](modifications.jpg)
+## Personal comments
+* Learnt how to connect and use AD8232 ECG sensor.
+* Learnt how to use LM324-N quad op-amp.
