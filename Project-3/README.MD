@@ -18,3 +18,5 @@ When the right-eye winks the AD8232 output wave form falls towards zero volts. W
 Normal blinks have no effect on the output as they are the equivalent of two simulataneous winks and it’s not possible for the AD8232 output to go in two opposite directions at the same time.
 ## Circuit
 ![wink_detector](wink_detector.jpg)
+
+![modifications](modifications.jpg)
