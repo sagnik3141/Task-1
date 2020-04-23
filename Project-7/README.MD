@@ -31,5 +31,5 @@ Serial.println(" ");
  delay(100);
 }
 ```
-![tpa](tpasensor.gif)
+![tpa](vid11_Rn2qAJVlJG.gif)
 After running this code, Open the Serial Terminal in Arduino IDE and look at the 8 array temperature sensed by TPA81. the first number in each line belongs to the total temperature. Now put your hand in front of the sensor and see the temperature of your body. To define a gesture by hand, you should know your hand temperature and set it as an offset. We set it to 29 degrees. Upload the next code to see your hand movement in front of TPA81.
