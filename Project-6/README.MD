@@ -26,3 +26,6 @@ Attach  the  motors  to  the  chassis  and  then  attach  the  wheels  to  the m
 Keep the other components on the chassis and tape it securely.
 
 Download  an  android  app  (eg. Arduino  Bluetooth  Control)  which  sends accelerometer data to the Bluetooth module.
+## Personal Comments
+* Doing this project helped me understand how to work with a HC-05 Bluetooth module and connect it to Arduino.
+* It also helped me understand how to work with L298 motor driver module.
