@@ -1,0 +1,114 @@
+#include <Wire.h>
+#include <Adafruit_MLX90614.h>
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+#include <LiquidCrystal_I2C.h>
+#include "ESP8266WiFi.h"
+#include "ESP8266HTTPClient.h"
+
+int frequency=10; //Specified in Hz
+int buzzPin=D5; 
+int timeOn=1000; //specified in milliseconds
+int timeOff=10000; //specified in millisecods
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); 
+const String slack_hook_url = "URL of Slack Web Hook";
+const String slack_icon_url = "none";
+const String slack_message = "Sick";
+const String slack_username = "<SLACK USER NAME/ Channel Name";
+
+
+// WiFi parameters to be configured
+const char* ssid = "<Wifi User Name>";
+const char* password = "<Wifi Password>";
+
+void setup() {
+  Serial.begin(9600);
+  
+  Serial.println("Adafruit MLX90614 test");  
+  mlx.begin();  
+  lcd.begin(16,1);//Defining 16 columns and 2 rows of lcd display
+  lcd.clear();
+  lcd.setCursor(0,0); //Defining positon to write from first row,first column .
+ 
+     
+  WiFi.begin(ssid, password);
+
+  // while wifi not connected yet, print '.'
+  // then after it connected, get out of the loop
+  while (WiFi.status() != WL_CONNECTED) {
+     delay(500);
+     Serial.print(".");
+     lcd.print(".");
+  }
+  //print a new line, then print WiFi connected and the IP address
+  Serial.println("");
+  Serial.println("WiFi connected");
+  // Print the IP address
+  Serial.println(WiFi.localIP());
+
+}
+
+bool postMessageToSlack(String msg)
+{
+  const char* host = "hooks.slack.com";
+  Serial.print("Connecting to ");
+  Serial.println(host);
+
+  // Use WiFiClient class to create TCP connections
+  WiFiClientSecure client;
+  const int httpsPort = 443;
+  if (!client.connect(host, httpsPort)) {
+    Serial.println("Connection failed :-(");
+    return false;
+  }
+
+  // We now create a URI for the request
+
+  Serial.print("Posting to URL: ");
+  Serial.println(slack_hook_url);
+
+  String postData="payload={\"link_names\": 1, \"icon_url\": \"" + slack_icon_url + "\", \"username\": \"" + slack_username + "\", \"text\": \"" + msg + "\"}";
+
+  // This will send the request to the server
+  client.print(String("POST ") + slack_hook_url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" +
+               "Content-Type: application/x-www-form-urlencoded\r\n" +
+               "Connection: close" + "\r\n" +
+               "Content-Length:" + postData.length() + "\r\n" +
+               "\r\n" + postData);
+  Serial.println("Request sent");
+  String line = client.readStringUntil('\n');
+  Serial.printf("Response code was: ");
+  Serial.println(line);
+  if (line.startsWith("HTTP/1.1 200 OK")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+void loop() {
+
+
+  Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempC()); 
+  Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
+  Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempF()); 
+  Serial.print("*F\tObject = "); Serial.print(mlx.readObjectTempF()); Serial.println("*F");
+  Serial.println();
+  
+   float calibartion =  mlx.readObjectTempF() + 5.00;
+   Serial.println(calibartion);
+   if(calibartion >= 96.00) 
+   {
+     postMessageToSlack(String(calibartion)+"F");
+    
+   }else {  
+     
+   
+    
+    }
+  lcd.clear();
+  lcd.setCursor(0,0); //Defining positon to write from first row,first column .
+  lcd.print(String(calibartion)+"F");;
+    delay(200); 
+   
+  
+}
