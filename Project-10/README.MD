@@ -13,6 +13,8 @@ Build up a complete autonomous IR contactless Temperature device which can be mo
 * The LCD Dispay communicates though the I2C method and SCL and SDA lines have to be connected accordingly.
 
 * The temperature is also displayed on the LCD Display.
+## Circuit
+![](capture_z5AQbA3y6s.jpg)
 
 ## Personal Comments
 * Need to install the MLX sensor library and the ESP8266WiFi.h library before uploading the code.
