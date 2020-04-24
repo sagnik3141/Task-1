@@ -14,7 +14,7 @@ Build up a complete autonomous IR contactless Temperature device which can be mo
 
 * The temperature is also displayed on the LCD Display.
 ## Circuit
-![](capture_z5AQbA3y6s.jpg)
+![](capture_z5AQbA3y6s.JPG)
 
 ## Personal Comments
 * Need to install the MLX sensor library and the ESP8266WiFi.h library before uploading the code.
