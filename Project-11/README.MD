@@ -21,3 +21,6 @@ The camera module needs to be installed and can be done as follows:
     Push the plastic clip back into place
 
 ![](connect-camera.gif)
+## Personal comments
+* Learnt how to work with a PIR sensor on a RPi.
+* Learnt how to connect and use RPi Camera Module.
