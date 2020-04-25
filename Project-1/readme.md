@@ -14,3 +14,4 @@ So far only the 47kΩ R0 is present on your breadboard, which is hard-wired dir
 Learning Outcomes:
 * Understand how an air quality sensor works
 * Make a rudimentary DAC (digital to analogue converter)
+* Code (fart.py) is attached.
