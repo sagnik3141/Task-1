@@ -15,4 +15,5 @@ It uses an alrorithm to change the x, y positions and make sure the while marble
 * Illuminate Sense HAT pixels
 * Capture pitch, roll, and yaw data with the Sense HAT’s orientation sensors
 * Implement a basic form of collision detection
+
 You will need to import the Sense HAT Library to run the code.
