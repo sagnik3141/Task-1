@@ -1,42 +1,18 @@
-# Project-2: Arduino Wireless Weather Station
+# Project-2: Fart Detector using RPi
 ## Problem Statement
-Building a weather station using an Arduino which displays indoor and remote tempertaure and humidity on a TFT display.
-## Components
-* Arduino Due
-* Arduino Nano
-* TFT HX8357C
-* DHT22 Temperature Sensor
-* Breadboard
-* NRF24L01+: Wireless Modules
-## Overview
-There are two parts of this Weather Station, the transmitter circuit and the receiver circuit.
+Building a Fart Detector which can sense and provide the advance warning necessary to evacuate the room.
+## Description
+The main component is the air quality sensor which gives a higher voltage as output for more contaminated air.
+![](fart1.webp)
+Next take a 47kΩ resistor (resistors are colour coded to help you identify them) and connect it between the sensor output and ground. This will siphon off a portion of the voltage coming from the sensor output, to help bring it down to the 1.1 to 1.4 volt region of the GPIO threshold for our trigger pin. This single resistor is not going to be enough to get the job done though.
+### Build a resistor ladder DAC
+The problem we now have is that despite the addition of the 47kΩ resistor, the air quality sensor has quite a large output voltage range. The resistor ladder DAC (Digital to Analog Converter) brings the voltage down to just below the GPIO threshold, under different air quality conditions.
+![](ladder_schematic.png)
+So far only the 47kΩ R0 is present on your breadboard, which is hard-wired directly to ground. The other resistors (R1 to R4) are each connected in parallel to a different GPIO pin. This gives us digital control over whether each resistor is on or off. If we configure the GPIO pin to use INPUT mode this switches the resistor off, because the GPIO pin is not internally connected to anything. However, if we set it to use OUTPUT mode and then drive the pin LOW, this will connect the resistor to ground and some voltage will be siphoned off through it.
 
-There are sensors on both the transmitter and the receiver circuits to get both indoor and remote data.
+## Personal Comments
+Learning Outcomes:
+* Understand how an air quality sensor works
+* Make a rudimentary DAC (digital to analogue converter)
 
-The transmitter measures the temperature and the humidity, and sends the data wirelessly to the receiver. The receiver measures the temperature and the humidity, receives the data from the remote sensor and displays everything on the TFT display.
-## Transmitter Circuit
-The transmitter circuit uses the DHT22 sensor to sense temperature and humidity remotely. This has a VCC and a ground pin which needs to be connected appropriately. The OUT pin can be connected to any digital pin.
-
-In order to use the DHT22 sensor with Arduino, we have to use the DHT library.
-
-The NRF24L01 module is a bi-directional transceiver module. It uses the SPI interface in order to communicate with Arduino.
-
-Three of the pins on this module are the SPI pins used for communication and are connected to the corresponding pins on the Arduino. The first of these pins is SCK which goes to digital pin 13 of the Arduino Uno. The next pin is MOSI which goes to digital pin 11, and the last pin in MISO which goes to digital pin 12. The CSN and CE pins can be connected to any digital pins and are used to decide if the module is in standby or active mode.
-
-We need to use the NRF24L01 library to use the module.
-## Receiver Circuit
-The receiver circuit uses the DHT22 sensor to measure the temperature and humidity indoor. Output pin is connected to Arduino's digital pin 8.
-
-It also uses the NRF24L01 module to receive the data from the transmitter circuit. 3rd pin to Arduino's digital pin 6. 4th pin to Arduino's digital pin 7. The 5th, 6th and 7th pins to the Arduino's SCK, MOSI, and MISO pins respectively.
-## Code
-The transmitter code and the receiver code are attached. Before uploading them, we need to install the DHT library, the NRF24L01 library and the display library.
-## Personal Notes
-* This project gave me an understanding of how wireless networks work.
-* I understood briefly two different Serial Communication Protocols and their differences. They are the SPI and the I2C.
-* I learnt how to connect the transciever module to the right pins and also understood how to use them to establish communication between two boards.
-* I understood how to display text on the TFT display.
-* Understood how to work with the DHT sensor module.
-
-
-
-
+Code (fart.py) is attached.
