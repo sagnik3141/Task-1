@@ -1,4 +1,4 @@
-# Project-2: Arduino Wireless Weather Station
+# Project-1: Arduino Wireless Weather Station
 ## Problem Statement
 Building a weather station using an Arduino which displays indoor and remote tempertaure and humidity on a TFT display.
 ## Components
