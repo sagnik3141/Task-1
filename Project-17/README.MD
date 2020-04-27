@@ -1,5 +1,5 @@
 # Project-17: Arduino Vehicle Tracker using ESP8266, GPS and Google Maps
-## Problem Stetement
+## Problem Statement
 Build a device which can get coordinates of the vehicle using GPS Module and show the location on Google Maps.
 ![](gpstrack.jpg)
 ## Description
